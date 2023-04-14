@@ -59,19 +59,29 @@ async function func() {
 
         log("updating session in " + tr)
 
-        to = setTimeout(async () => {
+        if (tr < th) {
             log("updating session...")
             await core_session_touch()
+
             loop()
-        }, tr * 1000)
+        } else {
+            to = setTimeout(async () => {
+                log("updating session...")
+                await core_session_touch()
+                loop()
+            }, tr * 1000)
+        }
 
         let ul = document.querySelector("#page-wrapper > nav > div.ml-auto.row > ul.nav.navbar-nav.flex-row-reverse.flex-md-row")
-        let ind = document.createElement("div")
-        
-        ind.innerHTML = "<div style=\"width:10px;height:10px;background-color:green;border-radius:100%;\"></div><span style=\"text-decoration:underline;\">Atenear active</span>"
-        ind.style = "display:flex;justify-content:center;align-items:center;gap:3px;"
 
-        ul.prepend(ind)
+        if (!ul.innerHTML.includes("Atenear")) {
+            let ind = document.createElement("div")
+        
+            ind.innerHTML = "<div style=\"width:10px;height:10px;background-color:green;border-radius:100%;\"></div><span style=\"text-decoration:underline;\">Atenear active</span>"
+            ind.style = "display:flex;justify-content:center;align-items:center;gap:3px;"
+
+            ul.prepend(ind)
+        }
     }
 
     log("injected")
