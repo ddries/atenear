@@ -1,9 +1,8 @@
 <p align="center">
     <img src="logos/upc128.png">
 </p>
-<h1 style="text-align: center;">Atenear</h1>
 
-***
+# Atenear
 
 Atenear is a chrome extension to refresh Atenea session automatically.
 
