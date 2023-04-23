@@ -1,6 +1,8 @@
 async function func() {
-    const k = M.cfg.sesskey
-    const c = document.cookie.split("MoodleSessionate6=")[1].trim()
+    let k = ""
+    let c = ""
+
+    refresh_keys()
 
     let to, tr
     const b = "https://atenea.upc.edu/lib/ajax/service.php"
@@ -12,6 +14,12 @@ async function func() {
     /* In seconds, session update delay */
     /* Max value = 3600 */
     const ri = 15 * 60
+
+    /* Refresh cookie and sess keys */
+    const refresh_keys = () => {
+        k = M.cfg.sesskey
+        c = document.cookie.split("MoodleSessionate6=")[1].trim()
+    }
 
     /* Get session time remaining */
     /* Current session must be valid */
@@ -96,6 +104,7 @@ async function func() {
             injectInactiveStatus()
         } else {
             injectActiveStatus()
+            refresh_keys()
         }
     }
 
@@ -115,7 +124,7 @@ async function func() {
 
     log("remaining_time=" + t)
 
-    if (t < 7200) {
+    if (t < th) {
         log("below threshold, updating...")
         await core_session_touch_wrapper()
     }

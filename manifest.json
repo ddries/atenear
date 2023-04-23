@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Atenear",
     "description": "Refresh Atenea session automatically",
-    "version": "1.6",
+    "version": "1.7",
     "background": {
         "service_worker": "background.js"
     },
