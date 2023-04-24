@@ -2,8 +2,6 @@ async function func() {
     let k = ""
     let c = ""
 
-    refresh_keys()
-
     let to, tr
     const b = "https://atenea.upc.edu/lib/ajax/service.php"
 
@@ -109,6 +107,8 @@ async function func() {
     }
 
     const log = (t) => { console.log("atenear > " + t) }
+
+    refresh_keys()
 
     log("injected")
     log("got auth c=" + c + ", k=" + k)
