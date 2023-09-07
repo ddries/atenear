@@ -66,40 +66,38 @@ async function func() {
 
     /* Inject active status indicator to Atenea */
     const injectActiveStatus = () => {
-        let ul = document.querySelector("#page-wrapper > nav.navbar > div.primary-navigation > nav > ul")
+        let ul = document.querySelector("#page-wrapper > nav.navbar")
 
         if (!ul.innerHTML.includes("Atenear")) {
-            let li = document.createElement("li")
+            let li = document.createElement("div")
             li.id = 'atenear-id'
             li.role = 'none'
-            li.setAttribute("data-key", "nav-item")
-            li.setAttribute("data-forceintomoremenu", "false")
+            li.classList.add("ml-auto")
         
             li.innerHTML = "<div style=\"width:8px;height:8px;background-color:green;border-radius:100%;\"></div><a style=\"padding-left:2px;\" role=\"menuitem\" class=\"nav-link\" target=\"_blank\" href=\"https://www.driescode.dev/atenear\" tabindex=\"-1\">Atenear ON</a>"
-            li.style = "display:flex;justify-content:center;align-items:center"
+            li.style = "display:flex;justify-content:center;align-items:center;gap:2px;"
 
-            ul.append(li)
+            ul.insertBefore(li, ul.children.item(ul.children.length - 1))
         }
     }
 
     /* Inject inactive status indicator to Atenea */
     const injectInactiveStatus = () => {
-        let ul = document.querySelector("#page-wrapper > nav.navbar > div.primary-navigation > nav > ul")
+        let ul = document.querySelector("#page-wrapper > nav.navbar")
 
         if (ul.innerHTML.includes("Atenear")) {
             document.getElementById("atenear-id").remove()
         }
 
-        let li = document.createElement("li")
+        let li = document.createElement("div")
         li.id = 'atenear-id'
         li.role = 'none'
-        li.setAttribute("data-key", "nav-item")
-        li.setAttribute("data-forceintomoremenu", "false")
+        li.classList.add("ml-auto")
     
         li.innerHTML = "<div style=\"width:8px;height:8px;background-color:red;border-radius:100%;\"></div><a style=\"padding-left:2px;\" role=\"menuitem\" class=\"nav-link\" target=\"_blank\" href=\"https://www.driescode.dev/atenear\" tabindex=\"-1\">Atenear OFF, refresh page!</a>"
-        li.style = "display:flex;justify-content:center;align-items:center"
+        li.style = "display:flex;justify-content:center;align-items:center;gap:2px;"
 
-        ul.append(li)
+        ul.insertBefore(li, ul.children.item(ul.children.length - 1))
     }
 
     /* Refresh session wrapper to update status indicator */
