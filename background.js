@@ -66,38 +66,38 @@ async function func() {
 
     /* Inject active status indicator to Atenea */
     const injectActiveStatus = () => {
-        let ul = document.querySelector("#page-wrapper > nav.navbar")
+        let nav = document.querySelector("#page-wrapper > nav.navbar")
 
-        if (!ul.innerHTML.includes("Atenear")) {
-            let li = document.createElement("div")
-            li.id = 'atenear-id'
-            li.role = 'none'
-            li.classList.add("ml-auto")
-        
-            li.innerHTML = "<div style=\"width:8px;height:8px;background-color:green;border-radius:100%;\"></div><a style=\"padding-left:2px;\" role=\"menuitem\" class=\"nav-link\" target=\"_blank\" href=\"https://www.driescode.dev/atenear\" tabindex=\"-1\">Atenear ON</a>"
-            li.style = "display:flex;justify-content:center;align-items:center;gap:2px;"
+        if (!nav.innerHTML.includes("Atenear")) {
+            let div = document.createElement("div")
+            div.id = 'atenear-id'
+            div.classList.add("mr-auto")
+            div.classList.add("ml-auto")
 
-            ul.insertBefore(li, ul.children.item(ul.children.length - 1))
+            div.innerHTML = "<a role=\"menuitem\" target=\"_blank\" href=\"https://www.driescode.dev/atenear\" tabindex=\"-1\">Atenear</a><span style=\"font-size:12px;background-color:green;color:white;border-radius:40%;padding:3px;\">ON</span>"
+            div.style = "display:flex;justify-content:center;align-items:center;gap:8px;"
+
+            nav.insertBefore(div, nav.children.item(nav.children.length - 1))
         }
     }
 
     /* Inject inactive status indicator to Atenea */
     const injectInactiveStatus = () => {
-        let ul = document.querySelector("#page-wrapper > nav.navbar")
+        let nav = document.querySelector("#page-wrapper > nav.navbar")
 
-        if (ul.innerHTML.includes("Atenear")) {
+        if (nav.innerHTML.includes("Atenear")) {
             document.getElementById("atenear-id").remove()
         }
 
-        let li = document.createElement("div")
-        li.id = 'atenear-id'
-        li.role = 'none'
-        li.classList.add("ml-auto")
-    
-        li.innerHTML = "<div style=\"width:8px;height:8px;background-color:red;border-radius:100%;\"></div><a style=\"padding-left:2px;\" role=\"menuitem\" class=\"nav-link\" target=\"_blank\" href=\"https://www.driescode.dev/atenear\" tabindex=\"-1\">Atenear OFF, refresh page!</a>"
-        li.style = "display:flex;justify-content:center;align-items:center;gap:2px;"
+        let div = document.createElement("div")
+        div.id = 'atenear-id'
+        div.classList.add("mr-auto")
+        div.classList.add("ml-auto")
 
-        ul.insertBefore(li, ul.children.item(ul.children.length - 1))
+        div.innerHTML = "<a role=\"menuitem\" target=\"_blank\" href=\"https://www.driescode.dev/atenear\" tabindex=\"-1\">Atenear</a><span style=\"font-size:12px;background-color:red;color:white;border-radius:40%;padding:3px;\">OFF</span> (Refresh Page)"
+        div.style = "display:flex;justify-content:center;align-items:center;gap:8px;"
+
+        nav.insertBefore(div, nav.children.item(nav.children.length - 1))
     }
 
     /* Refresh session wrapper to update status indicator */
